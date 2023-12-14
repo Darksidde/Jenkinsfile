@@ -1,46 +1,34 @@
 pipeline {
     agent any
     stages {
-        stage("build") {
+        stage("Build") {
             steps {
-                script {
-                    def gv = new YourClassNameHere() // gv'nin bir sınıf adıyla değiştirilmesi gerekiyor
-                    gv.buildApp()
-                }
-            }
-            post {
-                always {
-                    echo 'Build stage completed'
-                }
+                echo "Building the project..."
+                // Buraya projenizin derlenmesi, paketlenmesi veya herhangi bir yapı aşaması ekleyebilirsiniz.
             }
         }
-        stage("test") {
+        
+        stage("Test") {
             when {
                 expression {
-                    params.executeTests
+                    params.executeTests == 'true'
                 }
             }
             steps {
-                script {
-                    gv.testApp()
-                }
-            }
-            post {
-                always {
-                    echo 'Test stage completed'
-                }
+                echo "Running tests..."
+                // Buraya testlerin çalıştırılması için gerekli adımları ekleyebilirsiniz.
             }
         }
-        stage("deploy") {
-            steps {
-                script {
-                    gv.deployApp()
+
+        stage("Deploy") {
+            when {
+                expression {
+                    params.deploy == 'true'
                 }
             }
-            post {
-                always {
-                    echo 'Deployment stage completed'
-                }
+            steps {
+                echo "Deploying the application..."
+                // Buraya uygulamanızın dağıtılması veya yayınlanması için gerekli adımları ekleyebilirsiniz.
             }
         }
     }
