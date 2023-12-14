@@ -1,7 +1,5 @@
 pipeline {
     agent any
-    
-    }
     stages {
         stage("build") {
             steps {
@@ -9,9 +7,11 @@ pipeline {
                     gv.buildApp()
                 }
             }
-            triggers {
-        pollSCM '* * * * *'
-    }
+            post {
+                always {
+                    echo 'Build stage completed'
+                }
+            }
         }
         stage("test") {
             when {
@@ -24,6 +24,11 @@ pipeline {
                     gv.testApp()
                 }
             }
+            post {
+                always {
+                    echo 'Test stage completed'
+                }
+            }
         }
         stage("deploy") {
             steps {
@@ -31,6 +36,11 @@ pipeline {
                     gv.deployApp()
                 }
             }
+            post {
+                always {
+                    echo 'Deployment stage completed'
+                }
+            }
         }
-    }   
+    }
 }
