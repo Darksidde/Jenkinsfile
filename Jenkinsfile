@@ -1,22 +1,34 @@
 pipeline {
     agent any
- //environment {
-        //PATH = "$PATH;C:\\Program Files\\nodejs\\node_modules\\npm" // npm ve Node.js'in bulunduğu dizin yolu
-    //}
     stages {
         stage("Build") {
             steps {
-                sh 'npm install' // veya projenizin derlenmesi için gereken diğer komutlar
+                echo "Building the project..."
+                // Buraya projenizin derlenmesi, paketlenmesi veya herhangi bir yapı aşaması ekleyebilirsiniz.
             }
         }
+        
         stage("Test") {
+            when {
+                expression {
+                    params.executeTests == 'true'
+                }
+            }
             steps {
-                sh 'npm test' // veya test senaryolarını çalıştıracak diğer komutlar
+                echo "Running tests..."
+                // Buraya testlerin çalıştırılması için gerekli adımları ekleyebilirsiniz.
             }
         }
+
         stage("Deploy") {
+            when {
+                expression {
+                    params.deploy == 'true'
+                }
+            }
             steps {
-                sh 'npm deploy' // veya uygulamanızın dağıtılması için gereken diğer komutlar
+                echo "Deploying the application..."
+                // Buraya uygulamanızın dağıtılması veya yayınlanması için gerekli adımları ekleyebilirsiniz.
             }
         }
     }
