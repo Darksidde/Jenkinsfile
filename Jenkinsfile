@@ -4,6 +4,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
+                    def gv = new YourClassNameHere() // gv'nin bir sınıf adıyla değiştirilmesi gerekiyor
                     gv.buildApp()
                 }
             }
