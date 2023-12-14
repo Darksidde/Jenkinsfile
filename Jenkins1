@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                // Build adımları burada tanımlanır
+                echo 'Building...'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Test adımları burada tanımlanır
+                echo 'Testing...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Deploy adımları burada tanımlanır
+                echo 'Deploying...'
+            }
+        }
+    }
+    // Diğer pipeline seçenekleri buraya eklenir
+}
