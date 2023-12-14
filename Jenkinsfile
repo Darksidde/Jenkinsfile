@@ -9,6 +9,9 @@ pipeline {
                     gv.buildApp()
                 }
             }
+            triggers {
+        pollSCM '* * * * *'
+    }
         }
         stage("test") {
             when {
