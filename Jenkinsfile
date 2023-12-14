@@ -1,8 +1,8 @@
 pipeline {
     agent any
- environment {
-        PATH = "$PATH;C:\\Program Files\\nodejs\\node_modules\\npm" // npm ve Node.js'in bulunduğu dizin yolu
-    }
+ //environment {
+        //PATH = "$PATH;C:\\Program Files\\nodejs\\node_modules\\npm" // npm ve Node.js'in bulunduğu dizin yolu
+    //}
     stages {
         stage("Build") {
             steps {
